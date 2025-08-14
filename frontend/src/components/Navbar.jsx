@@ -1,3 +1,4 @@
+import axiosInstance from '../axiosConfig';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
@@ -5,9 +6,19 @@ const Navbar = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    logout();
-    navigate('/login');
+  const handleLogout = async () => {
+    try {
+      if (user?.token) {
+        await axiosInstance.post('/api/auth/logout', {}, {
+          headers: { Authorization: `Bearer ${user.token}` },
+        });
+      }
+    } catch (e) {
+      // ignore API errors; still clear local state
+    } finally {
+      logout();
+      navigate('/login');
+    }
   };
 
   return (
@@ -16,8 +27,10 @@ const Navbar = () => {
       <div>
         {user ? (
           <>
-            <Link to="/tasks" className="mr-4">Tasks</Link>
-            <Link to="/profile" className="mr-4">Profile</Link>
+            <span className="mr-4">Hello, {user.name}</span>
+            <Link to="/attendance" className="bg-purple-500 px-4 py-2 rounded hover:bg-purple-700 mr-2">
+              Attendance
+            </Link>
             <button
               onClick={handleLogout}
               className="bg-red-500 px-4 py-2 rounded hover:bg-red-700"
@@ -27,11 +40,10 @@ const Navbar = () => {
           </>
         ) : (
           <>
-            <Link to="/login" className="mr-4">Login</Link>
-            <Link
-              to="/register"
-              className="bg-green-500 px-4 py-2 rounded hover:bg-green-700"
-            >
+            <Link to="/login" className="bg-gray-800 px-4 py-2 rounded hover:bg-gray-900 mr-2">
+              Login
+            </Link>
+            <Link to="/register" className="bg-green-500 px-4 py-2 rounded hover:bg-green-700">
               Register
             </Link>
           </>
