@@ -1,64 +1,46 @@
-// frontend/src/components/Navbar.jsx
-import axiosInstance from '../axiosConfig';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { ADMIN_EMAIL } from '../config/admin';
 
 const Navbar = () => {
-  const { user, logout } = useAuth();
+  // Safe fallback if a test ever renders without AuthProvider
+  const ctx = useAuth();
+  const { user, logout } = ctx ?? { user: null, logout: () => {} };
   const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
-      if (user?.token) {
-        await axiosInstance.post('/api/auth/logout', {}, {
-          headers: { Authorization: `Bearer ${user.token}` },
-        });
-      }
-    } catch (e) {
-      // ignore
+      await logout();
     } finally {
-      logout();
       navigate('/login');
     }
   };
 
   return (
-    <nav className="bg-blue-600 text-white p-4 flex justify-between items-center">
-      <Link to={user ? "/attendance" : "/"} className="text-2xl font-bold">Task Manager</Link>
-      <div>
-        {user ? (
-          <>
-            <span className="mr-4">Hello, {user.name}</span>
-            <Link to="/attendance" className="bg-purple-500 px-4 py-2 rounded hover:bg-purple-700 mr-2">
-              Attendance
-            </Link>
+    <nav className="w-full bg-gray-100 border-b mb-6">
+      <div className="max-w-5xl mx-auto p-3 flex items-center justify-between">
+        <div className="flex gap-4">
+          <Link to="/login">Login</Link>
+          <Link to="/register">Register</Link>
+          {user && <Link to="/attendance">Attendance</Link>}
+          {user && <Link to="/tasks">Tasks</Link>}
+          {user?.role === 'admin' && <Link to="/admin/attendance">Admin Attendance</Link>}
+          {user?.role === 'admin' && <Link to="/admin/users">Admin Users</Link>}
+        </div>
 
-            {/* Admin link visible only for the hard-coded admin email */}
-            {user && user.email === ADMIN_EMAIL && (
-  <>
-    <Link to="/admin/attendance" className="bg-indigo-500 px-3 py-2 rounded mr-2 hover:bg-indigo-600">
-      Admin Attendance
-    </Link>
-    <Link to="/admin/users" className="bg-teal-500 px-3 py-2 rounded mr-2 hover:bg-teal-600">
-      Manage Users
-    </Link>
-  </>
-)}
-            <button onClick={handleLogout} className="bg-red-500 px-4 py-2 rounded hover:bg-red-700">
-              Logout
-            </button>
-          </>
-        ) : (
-          <>
-            <Link to="/login" className="bg-gray-800 px-4 py-2 rounded hover:bg-gray-900 mr-2">
+        <div className="flex items-center gap-3">
+          {user ? (
+            <>
+              <span>{user?.email}</span>
+              <button onClick={handleLogout} className="px-3 py-1 bg-blue-600 text-white rounded">
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link to="/login" className="px-3 py-1 bg-blue-600 text-white rounded">
               Login
             </Link>
-            <Link to="/register" className="bg-green-500 px-4 py-2 rounded hover:bg-green-700">
-              Register
-            </Link>
-          </>
-        )}
+          )}
+        </div>
       </div>
     </nav>
   );
