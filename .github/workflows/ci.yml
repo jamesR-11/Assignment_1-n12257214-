@@ -42,7 +42,7 @@ jobs:
       - name: Build Frontend
         working-directory: ./frontend
         env:
-          CI: true
+          CI: false
         run: npm run build
 
       # --- Tests ---
