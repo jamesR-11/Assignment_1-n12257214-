@@ -1,44 +1,49 @@
-Time Tracking & Attendance System
+Attendance & Time Tracking System (MERN)
 
-A simple MERN app for tracking employee logins/logouts, showing personal attendance history, and an admin panel to manage users and attendance records.
+A full-stack web app for recording staff/student login/logout times, managing tasks, and providing an admin panel to oversee users and attendance records. The app supports secure authentication, profile management, input validation, and CRUD flows for tasks and time entries.
+
+Default admin (demo)
+Email: admin@example.com
+Password: 12345
+Admin can view/update/delete users and attendance records.
 
 ✨ Features
 
-Authentication
+Auth: Sign up, log in, log out (JWT), protected routes
+Time tracking: Automatically record timestamps on login & logout
+Dashboard: User can view all of their attendance records
+Tasks: Create, read, update, delete tasks
 
-User register, login, logout
+Admin panel:
+Manage users (view/update/delete)
+Manage attendance records (view/update/delete)
+Validation: Email + input validation on client & server
+Testing: Jest + React Testing Library (frontend), backend tests
+CI: GitHub Actions workflow using npm (no Yarn)
 
-Attendance
+🧱 Tech Stack
 
-Automatically logs date & time on login
+Frontend: React, React Router, Context API, Axios, Tailwind CSS (utility classes)
 
-Automatically logs date & time on logout
+Backend: Node.js, Express, MongoDB (Mongoose), JWT
 
-User dashboard shows day / date / time and session duration
+Testing: Jest, @testing-library/react, Supertest (if used on backend)
 
-Tasks (optional / legacy)
+Tooling: ESLint, Prettier, GitHub Actions
 
-Add / View / Update / Delete tasks (kept from starter)
-
-Admin (hard-coded)
-
-View all users and all attendance records
-
-Edit / delete users
-
-Edit / delete attendance records
-
-Admin login (hard-coded):
-Email: admin@example.com
-Password: 12345
----
-
-**Prerequisite:** Please install the following software and create account in following web tools** **
-
-* **Nodejs [**[https://nodejs.org/en](https://nodejs.org/en)]** **
-* **Git [**[https://git-scm.com/](https://git-scm.com/)]** **
-* **VS code editor** [[https://code.visualstudio.com/](https://code.visualstudio.com/)]** **
-* **MongoDB Account** [[https://account.mongodb.com/account/login](https://account.mongodb.com/account/login)]** - In tutorial, we have also showed how can you create account and database: follow step number 2.**
-* **GitHub Account** [[https://github.com/signup?source=login](https://github.com/signup?source=login)]** **
-
----
+📁 Project Structure
+time_and_tracking_system/
+├── backend/
+│   ├── src/…                 
+│   ├── package.json
+│   └── .env                 
+├── frontend/
+│   ├── src/
+│   │   ├── App.js
+│   │   ├── axiosConfig.jsx   
+│   │   ├── context/AuthContext.js
+│   │   ├── components/…
+│   │   └── pages/…           
+│   ├── package.json
+│   └── .env                  
+└── .github/workflows/backend-ci.yml
