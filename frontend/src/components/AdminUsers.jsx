@@ -22,7 +22,7 @@ export default function AdminUsers() {
     }
   };
 
-  useEffect(() => { load(); /* eslint-disable-next-line */ }, []);
+  useEffect(() => { load();  }, []);
 
   const startEdit = (u) => {
     setEditingId(u._id);
