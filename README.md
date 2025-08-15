@@ -1,18 +1,36 @@
-**Task Manager Application Overview:The task manager application is designed to help users efficiently manage their tasks and responsibilities by providing a user-friendly interface for creating, viewing, updating, and deleting tasks. It includes essential features such as secure user authentication, allowing individuals to sign up and log in to their accounts, as well as profile management to update personal information. With built-in validation such as input field validation and email validation, the application ensures a seamless user experience while enhancing productivity and organization in both personal and professional settings. **
+Time Tracking & Attendance System
 
-**This apps **contain** the following features:**
+A simple MERN app for tracking employee logins/logouts, showing personal attendance history, and an admin panel to manage users and attendance records.
 
-* Signup
-* Login
-* Logout
-* Update profile
-* Add tasks
-* View tasks
-* Update tasks
-* Delete tasks
+✨ Features
 
-**This **app**lication** is**almost **a** precompiled** app**. However, students will develop some features,**such as adding tasks, viewing tasks, updating tasks, and **deleting** tasks**. **Students** will interact with GitHub when they develop the features.**
+Authentication
 
+User register, login, logout
+
+Attendance
+
+Automatically logs date & time on login
+
+Automatically logs date & time on logout
+
+User dashboard shows day / date / time and session duration
+
+Tasks (optional / legacy)
+
+Add / View / Update / Delete tasks (kept from starter)
+
+Admin (hard-coded)
+
+View all users and all attendance records
+
+Edit / delete users
+
+Edit / delete attendance records
+
+Admin login (hard-coded):
+Email: admin@example.com
+Password: 12345
 ---
 
 **Prerequisite:** Please install the following software and create account in following web tools** **
