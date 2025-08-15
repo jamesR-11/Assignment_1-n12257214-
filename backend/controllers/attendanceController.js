@@ -12,7 +12,7 @@ const getMyAttendance = async (req, res) => {
   }
 };
 
-// POST /api/attendance/login (optional)
+// (optional) POST /api/attendance/login
 const markLogin = async (req, res) => {
   try {
     const doc = await Attendance.create({
@@ -27,7 +27,7 @@ const markLogin = async (req, res) => {
   }
 };
 
-// POST /api/attendance/logout (optional)
+// (optional) POST /api/attendance/logout
 const markLogout = async (req, res) => {
   try {
     const updated = await Attendance.findOneAndUpdate(
