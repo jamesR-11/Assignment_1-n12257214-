@@ -1,6 +1,6 @@
 const Attendance = require('../models/Attendance');
 
-// GET /api/attendance/my
+
 const getMyAttendance = async (req, res) => {
   try {
     const list = await Attendance.find({ userId: req.user.id })
@@ -12,7 +12,7 @@ const getMyAttendance = async (req, res) => {
   }
 };
 
-// (optional) POST /api/attendance/login
+
 const markLogin = async (req, res) => {
   try {
     const doc = await Attendance.create({
@@ -27,7 +27,7 @@ const markLogin = async (req, res) => {
   }
 };
 
-// (optional) POST /api/attendance/logout
+
 const markLogout = async (req, res) => {
   try {
     const updated = await Attendance.findOneAndUpdate(

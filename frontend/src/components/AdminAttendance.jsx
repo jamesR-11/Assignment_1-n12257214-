@@ -52,7 +52,7 @@ export default function AdminAttendance() {
     }
   };
 
-  useEffect(() => { load(); /* eslint-disable-next-line */ }, []);
+  useEffect(() => { load(); }, []);
 
   const startEdit = (r) => {
     setEditingId(r._id);
