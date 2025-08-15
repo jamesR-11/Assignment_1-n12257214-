@@ -5,6 +5,9 @@ import Register from './pages/Register';
 import Profile from './pages/Profile';
 import Tasks from './pages/Tasks';
 import AttendanceLog from './components/AttendanceLog';
+import AdminAttendance from './components/AdminAttendance';
+import AdminUsers from './components/AdminUsers';
+
 
 function App() {
   return (
@@ -16,6 +19,11 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/tasks" element={<Tasks />} />
          <Route path="/attendance" element={<AttendanceLog />} />
+                 <Route path="/admin/attendance" element={<AdminAttendance />} />
+                 <Route path="/admin/users" element={<AdminUsers />} />
+
+
+
 
       </Routes>
     </Router>
