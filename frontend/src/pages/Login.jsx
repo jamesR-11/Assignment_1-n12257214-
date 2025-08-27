@@ -61,7 +61,7 @@ const Login = () => {
           type="submit"
           className="w-full h-12 rounded-xl bg-blue-600 text-white font-semibold shadow-lg hover:bg-blue-700 active:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 transition"
         >
-          Login
+          Login.
         </button>
 
         <p className="text-center text-xl text-gray-600 mt-4">
